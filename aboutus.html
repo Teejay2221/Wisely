@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Wisely</title>
+</head>
+<body>
+    <nav class="navbar">
+            <ul id="ulleft">
+                <li class="lileft">
+                    <button onclick=toggleSidebar() id="toggleSidebar">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+                    </button>
+                </li>
+                <li class="lileft">
+                    <a href="index.html">
+                        <h2 id="Logo">Wisely</h2>
+                    </a>
+                </li>
+            </ul>
+            
+            <ul id="ulright">
+                <div class="liright">
+                    <Button class="LogInDropDown">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e3e3e3"><path d="M226-262q59-42.33 121.33-65.5 62.34-23.17 132.67-23.17 70.33 0 133 23.17T734.67-262q41-49.67 59.83-103.67T813.33-480q0-141-96.16-237.17Q621-813.33 480-813.33t-237.17 96.16Q146.67-621 146.67-480q0 60.33 19.16 114.33Q185-311.67 226-262Zm253.88-184.67q-58.21 0-98.05-39.95Q342-526.58 342-584.79t39.96-98.04q39.95-39.84 98.16-39.84 58.21 0 98.05 39.96Q618-642.75 618-584.54t-39.96 98.04q-39.95 39.83-98.16 39.83ZM480.31-80q-82.64 0-155.64-31.5-73-31.5-127.34-85.83Q143-251.67 111.5-324.51T80-480.18q0-82.82 31.5-155.49 31.5-72.66 85.83-127Q251.67-817 324.51-848.5T480.18-880q82.82 0 155.49 31.5 72.66 31.5 127 85.83Q817-708.33 848.5-635.65 880-562.96 880-480.31q0 82.64-31.5 155.64-31.5 73-85.83 127.34Q708.33-143 635.65-111.5 562.96-80 480.31-80Zm-.31-66.67q54.33 0 105-15.83t97.67-52.17q-47-33.66-98-51.5Q533.67-284 480-284t-104.67 17.83q-51 17.84-98 51.5 47 36.34 97.67 52.17 50.67 15.83 105 15.83Zm0-366.66q31.33 0 51.33-20t20-51.34q0-31.33-20-51.33T480-656q-31.33 0-51.33 20t-20 51.33q0 31.34 20 51.34 20 20 51.33 20Zm0-71.34Zm0 369.34Z"/></svg>
+                    </Button>
+                    <div class="dropdownProfile">
+                        <a href="profile.html" id="dropdown-username" style="font-weight: bold; color: #a8dadc; pointer-events: none;">Loading...</a>
+                        
+                        <hr style="border-color: rgba(255,255,255,0.1); margin: 5px 0;">
+                        
+                        <a href="LogIn.html" id="logout-btn">Log Out</a>
+                    </div>
+                </div>
+                <li class="liright" id="subButton">
+                    <a href="subscription.html" title="Subscription">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M160-440v80h640v-80H160Zm0-440h640q33 0 56.5 23.5T880-800v440q0 33-23.5 56.5T800-280H640v200l-160-80-160 80v-200H160q-33 0-56.5-23.5T80-360v-440q0-33 23.5-56.5T160-880Zm0 320h640v-240H160v240Zm0 200v-440 440Z"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <aside id="sidebar" class="close">
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Expenses.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-360h280l80-80H240v80Zm0-160h240v-80H240v80Zm-80-160v400h280l-80 80H80v-560h800v120h-80v-40H160Zm756 212q5 5 5 11t-5 11l-36 36-70-70 36-36q5-5 11-5t11 5l48 48ZM520-120v-70l266-266 70 70-266 266h-70ZM160-680v400-400Z"/></svg>
+                        <span>Expenses</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="analysis.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m831.69-43.39-64.77-64.77q-8.84 4.16-18.15 6.16-9.31 2-18 2H240q-41.92 0-70.96-29.04Q140-158.08 140-200v-100h120v-315.08L51.23-823.85 94-866.61 874.46-86.15l-42.77 42.76ZM240-160h475.08l-80-80H200v40q0 17 11.5 28.5T240-160Zm580-92.62-60-60V-760H312.62L260-812.61v-39.7l55.39 47.7 56.15-47.7 56.15 47.7 56.16-47.7 56.15 47.7 56.15-47.7 56.16 47.7 56.15-47.7 56.15 47.7 55.39-47.7v599.69ZM320-300h255.08L320-555.08V-300Zm143.85-310-60-60h190.76v60H463.85Zm120 120-60-60h70.76v60h-10.76Zm93.84 5.38q-14.69 0-25.04-10.34-10.34-10.35-10.34-25.04t10.34-25.04q10.35-10.34 25.04-10.34t25.04 10.34q10.35 10.35 10.35 25.04t-10.35 25.04q-10.35 10.34-25.04 10.34Zm0-120q-14.69 0-25.04-10.34-10.34-10.35-10.34-25.04t10.34-25.04q10.35-10.34 25.04-10.34t25.04 10.34q10.35 10.35 10.35 25.04t-10.35 25.04q-10.35 10.34-25.04 10.34ZM200-160v-80 80Z"/></svg>
+                        <span>Analysis</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="aboutus.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-240q21 0 35.5-14.5T530-290q0-21-14.5-35.5T480-340q-21 0-35.5 14.5T430-290q0 21 14.5 35.5T480-240Zm-36-154h74q0-36 8-53t34-43q35-35 49.5-58.5T624-602q0-53-36-85.5T491-720q-55 0-93.5 27T344-618l66 26q7-27 28-43.5t49-16.5q27 0 45 14.5t18 38.5q0 17-11 36t-37 42q-33 29-45.5 55.5T444-394ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/></svg>
+                        <span>About Us</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+    <main class="mainPage">
+        <section class="DashBoard">
+            <h1>About Wisely</h1>
+            <p>
+                Helping students and individuals build smarter financial habits through
+                expense tracking, budgeting, and financial insights.
+            </p>
+        </section>
+
+        <section class="aboutGrid">
+
+            <div class="aboutCard">
+                <h2>🎯 Our Mission</h2>
+                <p>
+                    Wisely empowers users to take control of their finances by
+                    providing simple tools for tracking expenses, understanding
+                    spending patterns, and making informed financial decisions.
+                </p>
+            </div>
+
+            <div class="aboutCard">
+                <h2>📚 Capstone Purpose</h2>
+                <p>
+                    This project was developed as a capstone application to
+                    demonstrate practical solutions for personal financial
+                    management using modern web technologies.
+                </p>
+            </div>
+
+            <div class="aboutCard">
+                <h2>🚀 Why Choose Wisely?</h2>
+                <p>
+                    Monitor expenses, analyze spending behavior, and gain financial
+                    insights within a clean and user-friendly platform.
+                </p>
+            </div>
+        </section>
+
+        <section class="DashBoard">
+            <h1>Meet The Team</h1>
+            <p>The people behind Wisely.</p>
+        </section>
+
+        <section class="teamGrid">
+
+            <div class="teamCard">
+                <br>
+
+                <h2>Sean Mercurio</h2>
+                <p class="role">Web Development Project Manager</p>
+
+                <div class="socialLinks">
+                    <a href="https://github.com/obsessean">GitHub</a>
+                    <a href="https://www.facebook.com/seaan.dev">Facebook</a>
+                    <a href="mailto:seanbrycemercurio@gmail.com">Email</a>
+                </div>
+            </div>
+
+            <div class="teamCard">
+                <br>
+                <h2>Denry Rafael Tango</h2>
+                <p class="role">Front Developer / UX Designer-Graphic designer</p>
+
+                <div class="socialLinks">
+                    <a href="https://github.com/ZenaDRT">GitHub</a>
+                    <a href="https://www.facebook.com/rafael.tang.1481/">Facebook</a>
+                    <a href="mailto:denryrafaeltango@gmail.com">Email</a>
+                </div>
+            </div>
+
+            <div class="teamCard">
+                <br>
+
+                <h2>Tristian Joseph Estrañero</h2>
+                <p class="role">Backend Developer</p>
+
+                <div class="socialLinks">
+                    <a href="https://github.com/Teejay2221">GitHub</a>
+                    <a href="https://www.facebook.com/tristianjosephr.estranero">Facebook</a>
+                    <a href="mailto:josephestranero09@gmail.com">Email</a>
+                </div>
+            </div>
+
+            <div class="teamCard">
+                <br>
+
+                <h2>Alexander Blanco</h2>
+                <p class="role">Quality Tester</p>
+
+                <div class="socialLinks">
+                    <a href="#">GitHub</a>
+                    <a href="#">Facebook</a>
+                    <a href="mailto:email@example.com">Email</a>
+                </div>
+            </div>
+
+            <div class="teamCard">
+                <br>
+
+                <h2>Roshwell Cruz</h2>
+                <p class="role">Analyst</p>
+
+                <div class="socialLinks">
+                    <a href="https://github.com/Roshwell36483">GitHub</a>
+                    <a href="https://www.facebook.com/roshwell.cruz">Facebook</a>
+                    <a href="mailto:djw36483@gmail.com">Email</a>
+                </div>
+            </div>
+
+            <div class="teamCard">
+                <br>
+
+                <h2>Angelo Andrade</h2>
+                <p class="role">Quality Tester</p>
+
+                <div class="socialLinks">
+                    <a href="https://github.com/angeloandrade140">GitHub</a>
+                    <a href="https://www.facebook.com/share/1HJrdK9K4C/">Facebook</a>
+                    <a href="mailto:angeloandrade140@gmail.com">Email</a>
+                </div>
+            </div>
+
+            <div class="teamCard">
+                <br>
+
+                <h2>Ken Caña</h2>
+                <p class="role">Analyst</p>
+
+                <div class="socialLinks">
+                    <a href="https://github.com/canadoniequin06">GitHub</a>
+                    <a href="https://www.facebook.com/share/1BbV8JdqKK/">Facebook</a>
+                    <a href="mailto:canadoniequin6@gmail.com">Email</a>
+                </div>
+            </div>
+
+            <div class="teamCard">
+                <br>
+
+                <h2>Don Antonio Angcot IV</h2>
+                <p class="role">Analyst</p>
+
+                <div class="socialLinks">
+                    <a href="#">GitHub</a>
+                    <a href="#">Facebook</a>
+                    <a href="mailto:email@example.com">Email</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="ctaSection">
+            <h2>Start Your Financial Journey Today</h2>
+
+            <p>
+                Take control of your finances and make smarter decisions with
+                Wisely.
+            </p>
+
+            <a href="subscription.html" class="ctaButton">
+                Explore Premium Features
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <p><b>© 2026 Wisely. Developed as a Capstone Project. All rights reserved.</b></p>
+    </footer>
+
+    <script src="script.js" defer></script>
+    <script type="module" src="navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@n8n/chat@0/dist/chat.bundle.es.js" type="module"></script>
+
+<div id="n8n-chat"></div>
+
+<script src="subscription.js" type="module"></script>
+    </body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat@0/dist/style.css" />
+<div id="n8n-chat"></div>
+
+<style>
+  :root {
+    --chat--color--primary: #ff6c37 !important;           
+    --chat--color--primary-shade-50: #e05626 !important;  
+    --chat--color--primary--shade-100: #c44319 !important;
+  }
+  .n8n-chat-toggle-button {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+    transition: transform 0.2s ease-in-out !important;
+  }
+  .n8n-chat-toggle-button:hover { transform: scale(1.08); }
+  .n8n-chat-window {
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18) !important;
+    border: 1px solid #f0f0f0 !important;
+  }
+</style>
+
+<script type="module">
+  import { auth } from './auth.js'; 
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+// Your existing javascript.js code...
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    try {
+      // 1. Force Firebase to fetch a clean token to grab the fresh stripeRole claim
+      const tokenResult = await user.getIdTokenResult(true); 
+      const userRole = tokenResult.claims.stripeRole;
+
+      console.log("Current detected Stripe Role claim:", userRole);
+
+      // 2. Check if the user is premium
+      if (userRole === 'premium') {
+        console.log("User tier: Premium! Unlocking Chatbot.");
+        
+        // 3. Launch your chatbot container 
+        if (typeof initN8nChatbot === "function") {
+          initN8nChatbot();
+        }
+      } else {
+        console.log("User tier: Free. AI Chatbot locked.");
+        // Optional: Hide chatbot UI or show subscription upgrade prompt here
+      }
+    } catch (error) {
+      console.error("Error refreshing security claims token:", error);
+    }
+  } else {
+    console.log("No user logged in.");
+  }
+});
+
+// Keep your launcher routine handy at the bottom
+function initN8nChatbot() {
+  if (typeof createChat === "function") {
+    createChat({
+      webhookUrl: 'https://wisely3.app.n8n.cloud/webhook/cc234ca7-19e3-44d3-bc88-b1fe5889664/chat',
+      target: '#n8n-chat',
+      mode: 'window', 
+      showWelcomeScreen: true,
+      title: 'AI Assistant',
+      subtitle: 'How can we help you today?',
+      initialMessages: ['Hello My name is Wisely AI! How may I help you?'],
+    });
+  }
+}
+ </script>
+</html>

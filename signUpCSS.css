@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-family: "JetBrains Mono", monospace;
+    line-height: 1.5rem;
+}
+
+body{
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: #EAE7E6;
+    color: black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 1em;
+}
+
+#Title{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    font-weight: 900;
+}
+
+#Title a{
+    color: #233D4D;
+    text-decoration: none;
+}
+
+div h1{
+    font-family: 'Montserrat', sans-serif;
+    color: #EAE7E6;
+}
+
+
+form{
+    background-color: #233D4D;
+
+    border: black solid 3px;
+    border-radius: 2em;
+    padding: 8vw;
+}
+
+form div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+}
+
+form input{
+    height: 3em;
+    width: 20vw;
+
+    border-radius: 0.5em;
+
+    padding-left: 0.5em;
+    
+    background-color: #1B2B39;
+    color: white;
+    border: none;
+}
+
+#submit-input{
+    border-radius: 2em;
+    background-color: #1B2B39;
+    color: white;
+
+    cursor: pointer;
+}
+
+.decorSVG{
+    background-color: transparent;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.decorSVG svg{
+    background-color: #1B2B39;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 50px #1B2B39 inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+.agreement-container {
+    font-size: 0.8rem;
+    justify-content: center;
+    max-width: calc(20vw + 60px); 
+    gap: 8px;
+}
+
+.agreement-container a {
+    cursor: pointer;
+}
+
+form input[type="checkbox"] {
+    height: auto;
+    width: auto;
+    cursor: pointer;
+}
+
+/* Terms & Conditions popup */
+.tnc-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.tnc-modal.open {
+    display: flex;
+}
+
+.tnc-modal-content {
+    background-color: #233D4D;
+    color: white;
+    border: black solid 3px;
+    border-radius: 1.5em;
+    padding: 2em;
+    width: 90%;
+    max-width: 480px;
+    max-height: 80vh;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.tnc-modal-content h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #EAE7E6;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.tnc-updated {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #a8dadc;
+    margin-top: -0.5em;
+}
+
+.tnc-body {
+    background-color: #1B2B39;
+    border-radius: 0.5em;
+    padding: 1em 1.2em;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    line-height: 1.4rem;
+}
+
+.tnc-body p {
+    margin-bottom: 1em;
+}
+
+.tnc-body ul {
+    margin: 0 0 1em 1.4em;
+}
+
+.tnc-body li {
+    margin-bottom: 0.3em;
+}
+
+.tnc-body p:last-child,
+.tnc-body ul:last-child {
+    margin-bottom: 0;
+}
+
+.tnc-close-btn {
+    align-self: center;
+    background-color: #1B2B39;
+    color: white;
+    border: none;
+    border-radius: 2em;
+    padding: 0.6em 2em;
+    font-family: "JetBrains Mono", monospace;
+    cursor: pointer;
+}
+
+.tnc-close-btn:hover {
+    background-color: #14202b;
+}

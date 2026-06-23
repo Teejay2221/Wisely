@@ -1,0 +1,1110 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-family: "JetBrains Mono", monospace;
+    line-height: 1.5rem;
+}
+
+body{
+    background-color: #EAE7E6;
+    color: black;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+    "navbar navbar"
+    "sidebar main"
+    "sidebar footer";
+}
+
+/* =============================================== */
+#subButton{
+    padding-top: 0;
+}
+
+#subButton a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px;
+    background-color: #233D4D;
+    border-radius: 50%;
+
+    transition: background-color 150ms ease-in-out;
+    cursor: pointer;
+}
+
+#subButton a:hover {
+    background-color: #1B2B39;
+}
+
+#subButton svg {
+    display: block;
+}
+
+#Logo{
+    font-weight: 1000;
+}
+
+/* ================================================ */
+
+/* Main Navbar */
+
+.navbar{
+    grid-area: navbar;
+    background-color: #233D4D;
+    color: #EAE7E6;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: solid 1px black;
+
+    top: 0;
+    position: sticky;
+    z-index: 100;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: #EAE7E6;
+
+    display: block;
+}
+
+/* NavBar Left */
+
+#ulleft{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+.lileft{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* navBar Right */
+
+#ulright{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+.liright{
+    position: relative;
+    padding-right: 15px;
+
+    display: flex;
+    align-items: center;
+}
+
+/* ================================================ */
+
+/* Main Sidebar */
+
+#sidebar{
+    grid-area: sidebar;
+    box-sizing: border-box;
+    min-height: calc(100vh - 52.8px);
+    height: 100%;
+    padding: 5px;
+    width: 60px;
+    border-right: 1px solid black;
+
+    background-color: #233D4D;
+
+    top: 52.8px;
+    position: sticky;
+    align-self: start;
+
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+
+#sidebar ul{
+    list-style-type: none;
+
+}
+
+#sidebar a{
+    text-decoration: none;
+    color: #EAE7E6;
+
+    display: flex;
+    align-items: center;
+
+    gap: 1em;
+    border-radius: .5em;
+    padding: .85em;
+
+    transition: padding 300ms;
+}
+
+#sidebar a:hover{
+    background-color: #1B2B39;
+}
+
+#sidebar:not(.close) {
+    width: 250px;
+    padding: 5px 1em;
+}
+
+#sidebar.close span{
+    display: none;
+}
+
+#sidebar.close a {
+    justify-content: center;
+    padding: 0.85em 0;
+}
+
+#sidebar svg {
+    flex-shrink: 0;
+}
+
+/* Toggle Sidebar */
+
+#toggleSidebar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: none;
+    border-radius: .5em;
+    background: none;
+    cursor: pointer;
+}
+
+#toggleSidebar:hover{
+    background-color: #1B2B39;
+}
+
+/* Main */
+
+main{
+    padding: min(30px, 7%);
+}
+
+main p{
+    color: #1B2B39;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.DashBoard{
+    background-color: #2D4A5C;
+    color: #EAE7E6;
+
+    border: solid rgba(234, 231, 230, 0.2) 1px;
+    border-radius: 1em;
+
+    padding: min(3em, 8%);
+    margin-bottom: 20px;
+}
+
+.DashBoard h1{
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: .75rem;
+    line-height: 1.1;
+}
+
+.welcomeDivider{
+    width: 80px;
+    height: 4px;
+
+    border-radius: 999px;
+    background-color: #E6A15C;
+
+    margin-bottom: 1rem;
+}
+
+.DashBoard p{
+    color: rgba(234, 231, 230, 0.85);
+    max-width: 650px;
+    margin: 0;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.wiselyHighlight{
+    color: #E6A15C;
+}
+
+.heroBadge{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    margin-bottom: 1rem;
+    padding: 0.45rem 0.9rem;
+
+    border-radius: 999px;
+
+    background: rgba(230, 161, 92, 0.12);
+    border: 1px solid rgba(230, 161, 92, 0.25);
+
+    color: #E6A15C;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    backdrop-filter: blur(4px);
+}
+
+.infoDashboard{
+    display: grid;
+    grid-area: dashboardInfo;
+
+    border: solid black 1px;
+    border-radius: 1em;
+    padding: min(30px, 7%);
+}
+
+.secondHalfMain{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "walletDashboard dashboardInfo";
+    gap: 2rem;
+}
+
+/* Your Financial Snapshot */
+
+
+.dashboardOverview{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.statCard{
+    background-color: #233D4D;
+    border: 1px solid rgba(234,231,230,.15);
+
+    border-radius: 1rem;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.statCard:hover{
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 12px 24px rgba(0,0,0,0.15),
+        0 4px 8px rgba(0,0,0,0.10);
+
+    border-color: rgba(230,161,92,.5);
+}
+
+.statCard::before{
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.08),
+        transparent
+    );
+
+    transition: left .6s ease;
+}
+
+.statCard:hover::before{
+    left: 100%;
+}
+
+.statCard h3{
+    color: #E6A15C;
+    font-size: .95rem;
+
+    transition: color .25s ease;
+}
+
+.statCard:hover h3{
+    color: #FFB86B;
+}
+
+.statCard span{
+    font-size: 1.8rem;
+    font-weight: bold;
+
+    transition: transform .25s ease;
+}
+
+.statCard:hover span{
+    transform: scale(1.05);
+}
+
+.analysisPreview{
+    margin-top: 1rem;
+
+    padding: 1rem;
+
+    background-color: rgba(35,61,77,.35);
+
+    border-radius: 1rem;
+
+    border: 1px solid rgba(234,231,230,.15);
+}
+
+.analysisPreview h3{
+    margin-bottom: 1rem;
+}
+
+.previewItem{
+    display: flex;
+    justify-content: space-between;
+
+    padding: .6rem 0;
+
+    border-bottom: 1px solid rgba(234,231,230,.1);
+}
+
+.previewItem:last-child{
+    border-bottom: none;
+}
+
+.analysisButton{
+    display: inline-block;
+
+    margin-top: 1.5rem;
+
+    padding: 12px 18px;
+
+    background-color: #233D4D;
+
+    color: #EAE7E6;
+
+    text-decoration: none;
+
+    border-radius: .75rem;
+
+    transition: .2s;
+}
+
+.analysisButton:hover{
+    background-color: #1B2B39;
+}
+
+
+.homePageContent{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+
+    align-items: stretch;
+}
+
+.supportFeatures{
+    margin: 1rem 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.supportItem{
+    background-color: rgba(255,255,255,.08);
+
+    padding: .75rem 1rem;
+
+    border-radius: .75rem;
+
+    border-left: 3px solid #E6A15C;
+}
+
+.contactSupport,
+.wiselyInfo{
+    border: solid rgba(234, 231, 230, 0.2) 1px;
+    border-radius: 1em;
+    padding: min(30px, 7%);
+    color: #EAE7E6;
+}
+
+.contactSupport{
+    background-color: #2D4A5C;
+    border-top: 4px solid #E6A15C;
+}
+
+.wiselyInfo{
+    background-color: #2D4A5C;
+    border-top: 4px solid #5C9EAD;
+}
+
+.contactSupport:hover,
+.wiselyInfo:hover{
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 24px rgba(0,0,0,.12);
+
+    transition: .25s ease;
+}
+
+.contactSupport h2,
+.wiselyInfo h2{
+    margin-bottom: 1rem;
+}
+
+.contactSupport p,
+.wiselyInfo p{
+    color: #EAE7E6;
+}
+
+.contactSupport a{
+    display: inline-block;
+
+    margin-top: auto;
+
+    padding: 10px 16px;
+
+    border-radius: .75em;
+
+    text-decoration: none;
+    color: #EAE7E6;
+
+    background-color: #233D4D;
+
+    transition: background-color 150ms ease-in-out;
+}
+
+.contactSupport a:hover{
+    background-color: #1B2B39;
+}
+
+@media (max-width: 768px){
+
+    .homePageContent{
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* DropDown Profile */
+.LogInDropDown{
+    background-color: #233D4D;
+
+    box-shadow: none;
+    border: none;
+
+    cursor: pointer;
+}
+
+.dropdownProfile{
+    position: absolute;
+    right: 0;
+    top: calc(100% + .10rem);
+    padding: .75rem;
+    border-radius: .25rem;
+
+    background-color: #233D4D;
+    box-shadow: 0 2px 5px #213948;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 150ms ease-in-out, transform 200ms ease-in-out;
+
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.liright:focus-within .dropdownProfile{
+    opacity: 1;
+    transform: translateY(0);
+
+    pointer-events: auto;
+}
+
+.liright:focus-within .LogInDropDown, .LogInDropDown:hover{
+    background-color: #1B2B39;
+    border-radius:35px;
+}
+
+.dropdownProfile a{
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    color: #EAE7E6;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+
+    transition: background-color 150ms;
+}
+
+.dropdownProfile a:hover {
+    background-color: #1B2B39;
+}
+
+/* Wallet */
+
+.mainPageContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Currently on Wallet */
+.wallet{
+    border: solid 1px black;
+    border-radius: 1em;
+    margin-bottom: 20px;
+    padding: min(3em, 15%);
+
+    border: solid rgba(234, 231, 230, 0.2) 1px;
+    color: #EAE7E6;
+    background-color: #2D4A5C
+}
+
+.currentExpenses{
+    border: solid 1px black;
+    border-radius: 1em;
+    margin-bottom: 20px;
+    padding: min(3em, 15%);
+
+    border: solid rgba(234, 231, 230, 0.2) 1px;
+    color: #EAE7E6;
+    background-color: #2D4A5C
+}
+
+.wallet h2{
+    padding-top: 0.5em;
+}
+
+.wallet h3{
+    padding-top: 0.5em;
+}
+
+.currentExpenses h2{
+    padding-top: 0.5em;
+}
+
+.currentExpenses h3{
+    padding-top: 0.5em;
+}
+
+.expensesHistory{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "eHistory" "NA";
+
+    border: solid rgba(234, 231, 230, 0.2) 1px;
+    color: #EAE7E6;
+}
+
+.history{
+    grid-area: eHistory;
+    padding: min(30px, 7%);
+
+    border-radius: 2em;
+
+    background-color: #2D4A5C;
+    color: #EAE7E6;
+
+    overflow-y: auto;
+    height: 67dvh;
+    scrollbar-width: none;
+}
+
+.history div{
+    border: solid rgba(234, 231, 230, 0.2) 1px;
+    border-radius: 1em;
+    margin-bottom: 20px;
+    padding: min(3em, 15%);
+}
+.expenses h2{
+    padding-top: 0.5em;
+}
+
+.expensesTitle{
+    padding: min(30px, 7%);
+}
+
+/* Footer */
+
+footer{
+    display: grid;
+    grid-area: footer;
+
+    color: #EAE7E6;
+    background-color: #1B2B39;
+    bottom: 0;
+    padding: min(30px, 7%);
+}
+
+/* ChatBot Button */
+
+#chatToggleBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #233D4D;
+    color: #EAE7E6;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#chatToggleBtn:hover {
+    transform: scale(1.05);
+    background-color: #1B2B39;
+}
+
+#chatbot {
+    position: fixed;
+    bottom: 95px;
+    right: 20px;
+    z-index: 1000;
+    width: 350px;
+    height: 450px;
+    background-color: #ffffff;
+    border: 1px solid #233D4D;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "log log"
+        "input btn";
+    padding: 1rem;
+    gap: 0.5rem;
+    box-sizing: border-box;
+    font-family: "JetBrains Mono", monospace;
+    
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#chatbot.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+#chatlog {
+    grid-area: log;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+#userInput {
+    grid-area: input;
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 1.5rem;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#chatbot button {
+    grid-area: btn;
+    background-color: #233D4D;
+    color: #EAE7E6;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 150ms ease-in-out;
+}
+
+#chatbot button:hover {
+    background-color: #1B2B39;
+}
+
+/* Expenses UI */
+
+.analysisSummaryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.summaryCard {
+    background-color: #2D4A5C;
+    color: #EAE7E6;
+    padding: 1.5em;
+    border-radius: 1em;
+    border: solid rgba(234, 231, 230, 0.2) 1px;
+}
+
+.summaryCard span {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.summaryCard h2 {
+    margin-top: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.statusSafe {
+    color: #28a745;
+}
+
+.analysisContentSplit {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 20px;
+    width: 100%;
+}
+
+.chartCardContainer, .breakdownCardContainer {
+    background-color: #2D4A5C;
+    color: #EAE7E6;
+    border: solid rgba(234, 231, 230, 0.2) 1px;
+    border-radius: 1em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+}
+
+.chartCardContainer h2, .breakdownCardContainer h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(234, 231, 230, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.chartWrapper {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 280px;
+}
+
+.breakdownList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.breakdownItem {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: rgba(27, 43, 57, 0.4);
+    border: 1px solid rgba(234, 231, 230, 0.05);
+}
+
+.colorIndicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.categoryName {
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.categoryAmount {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 850px) {
+    .analysisContentSplit {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Subscription */
+
+.subscriptionHero{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.subscriptionHero h1{
+    margin-bottom: .5rem;
+}
+
+.subscriptionHero p{
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.subscriptionContainer{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.subscriptionCard{
+    background-color: #2D4A5C;
+    color: #EAE7E6;
+
+    width: 350px;
+    padding: 2rem;
+
+    border-radius: 1rem;
+    border: solid rgba(234,231,230,.2) 1px;
+
+    text-decoration: none;
+}
+
+.planTag{
+    background-color: #233D4D;
+    display: inline-block;
+    padding: .3rem .8rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+    font-size: .8rem;
+}
+
+.subscriptionCard h2{
+    margin-bottom: 1rem;
+}
+
+.price{
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: .25rem;
+}
+
+.price span{
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.subscriptionCard ul{
+    margin: 1.5rem 0;
+    padding-left: 1.2rem;
+}
+
+.subscriptionCard li{
+    margin-bottom: .75rem;
+}
+
+.planButton{
+    background-color: #EAE7E6;
+    color: #233D4D;
+
+    text-align: center;
+    padding: .8rem;
+
+    border-radius: .75rem;
+    font-weight: bold;
+
+    transition: 150ms ease;
+
+    cursor: pointer;
+}
+
+.planButton:hover{
+    background-color: #ffffff;
+}
+
+.subscriptionBenefits{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.benefitCard{
+    background-color: #ffffff;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+footer{
+    text-align: center;
+}
+
+/* About Us Page */
+
+.aboutGrid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.aboutCard{
+    background-color: #2D4A5C;
+    color: #EAE7E6;
+    border-radius: 1em;
+    padding: 2rem;
+    border: solid rgba(234, 231, 230, 0.2) 1px;
+
+    transition: transform 0.2s ease;
+}
+
+.aboutCard:hover{
+    transform: translateY(-5px);
+}
+
+.aboutCard h2{
+    margin-bottom: 1rem;
+}
+
+.aboutCard p{
+    color: #EAE7E6;
+    margin: 0;
+}
+
+.ctaSection{
+    background-color: #233D4D;
+    color: #EAE7E6;
+
+    border-radius: 1em;
+    padding: 3rem;
+    text-align: center;
+
+    border: solid rgba(234, 231, 230, 0.2) 1px;
+}
+
+.ctaSection p{
+    color: #EAE7E6;
+    margin: 1rem 0 2rem;
+}
+
+.ctaButton{
+    display: inline-block;
+    text-decoration: none;
+
+    background-color: #EAE7E6;
+    color: #233D4D;
+
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+
+    transition: all 0.2s ease;
+}
+
+.ctaButton:hover{
+    background-color: #ffffff;
+    transform: scale(1.05);
+}
+
+.teamGrid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.teamCard{
+    background-color: #2D4A5C;
+    color: #EAE7E6;
+
+    border-radius: 1em;
+    padding: 2rem;
+
+    text-align: center;
+
+    border: solid rgba(234,231,230,.2) 1px;
+    transition: transform .2s ease;
+}
+
+.teamCard:hover{
+    transform: translateY(-5px);
+}
+
+.teamCard img{
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    margin-bottom: 1rem;
+
+    border: 3px solid rgba(234,231,230,.3);
+}
+
+.teamCard h2{
+    margin-bottom: .5rem;
+}
+
+.role{
+    color: #d6d6d6;
+    margin-bottom: 1rem;
+}
+
+.socialLinks{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.socialLinks a{
+    text-decoration: none;
+    color: #EAE7E6;
+
+    background-color: #233D4D;
+
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+
+    transition: background-color .2s ease;
+}
+
+.socialLinks a:hover{
+    background-color: #1B2B39;
+}
+
