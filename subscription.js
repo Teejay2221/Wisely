@@ -1,30 +1,42 @@
 // subscription.js
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-// 1. CHANGED: Importing the standardized production window bundle instead of the strict ES module layout
-import 'https://cdn.jsdelivr.net/npm/@n8n/chat@0/dist/chat.bundle.js';
+import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat@0/dist/chat.bundle.es.js';
 // Import your centralized auth and db configurations
 import { auth, db } from './auth.js';
 
 /**
  * 1. DEFINE THE CHATBOT LAUNCHER FIRST
+ * Properly named and configured to safely intercept n8n v3.1 streams.
  */
 function initN8nChatbot() {
   console.log("Initializing n8n chat widget component...");
   
-  // Checking the global window component namespace deployed by the standard bundle script
-  if (window.N8NChat) {
-    window.N8NChat({
+  if (typeof createChat === "function") {
+    createChat({
       webhookUrl: 'https://wisely3.app.n8n.cloud/webhook/cc234ca7-19e3-44d3-bc88-b1fe5889664/chat',
       target: '#n8n-chat',
       mode: 'window', 
       showWelcomeScreen: true,
-      title: 'AI Assistant',
-      subtitle: 'Hello My Name Is Wisely AI! How may I help you today?',
+      
+      // Forces the widget to compile streaming data packets correctly
+      stream: true, 
+      
+      i18n: {
+        en: {
+          welcome: {
+            title: 'AI Assistant',
+            subtitle: 'Hello My Name Is Wisely AI! How may I help you today?',
+          },
+          input: {
+            placeholder: 'Type your question...',
+          }
+        }
+      },
       initialMessages: ['Hello My Name Is Wisely AI! How may I help you today?'],
     });
   } else {
-    console.error("CRITICAL: window.N8NChat engine package did not mount properly.");
+    console.error("CRITICAL: n8n createChat bundle did not load properly from the CDN.");
   }
 }
 
@@ -44,8 +56,9 @@ onAuthStateChanged(auth, async (user) => {
       console.log("Current detected Stripe Role claim:", userRole);
 
       if (userRole === 'premium') {
-        // User has successfully checked out -> Enable AI Chatbot
+        // User has successfully checked out -> Enable AI Chatbot safely!
         initN8nChatbot();
+        
         if (subscribeBtn) {
           subscribeBtn.innerText = "Current Plan Active";
           subscribeBtn.style.opacity = "0.5";
@@ -90,7 +103,6 @@ function setupCheckoutFlow(uid) {
     subscribeBtn.disabled = true;
 
     try {
-      // Pin to the core root path expected by the extension
       const checkoutRef = collection(db, 'customers', uid, 'checkout_sessions');
       
       const docRef = await addDoc(checkoutRef, {
@@ -101,7 +113,6 @@ function setupCheckoutFlow(uid) {
 
       console.log("Document created! Waiting for extension response...");
 
-      // Watch for changes on the session object until Stripe produces a valid checkout URL
       onSnapshot(docRef, (snapshot) => {
         const sessionData = snapshot.data();
         if (sessionData && sessionData.url) {
