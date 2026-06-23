@@ -14,7 +14,7 @@ function initN8nChatbot() {
   
   if (typeof createChat === "function") {
     createChat({
-      webhookUrl: 'https://wisely3.app.n8n.cloud/webhook/cc234ca7-19e3-44d3-bc88-b1fe5889664/chat',
+      webhookUrl: 'https://wisely3.app.n8n.cloud/webhook/cc234ca7-19e3-44d3-bc88-b81fe5889664/chat',
       target: '#n8n-chat',
       mode: 'window', 
       showWelcomeScreen: true,
