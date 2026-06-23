@@ -14,10 +14,16 @@ function initN8nChatbot() {
   
   if (typeof createChat === "function") {
     createChat({
-      webhookUrl: 'https://wisely3.app.n8n.cloud/webhook/cc234ca7-19e3-44d3-bc88-b81fe5889664/chat',
+      webhookUrl: 'https://wisely3.app.n8n.cloud/webhook/cc234ca7-19e3-44d3-bc88-b1fe5889664/chat',
       target: '#n8n-chat',
-      mode: 'window', // Activates n8n's built-in pop-up launcher and floating drawer layout
+      mode: 'window', 
       showWelcomeScreen: true,
+      
+      // ==========================================
+      // ADD THIS LINE RIGHT HERE TO FIXED THE JSON PROBLEM:
+      // ==========================================
+      stream: true, 
+      
       title: 'AI Assistant',
       subtitle: 'Hello My Name Is Wisely AI! How may I help you today?',
       initialMessages: ['Hello My Name Is Wisely AI! How may I help you today?'],
