@@ -1,35 +1,30 @@
 // subscription.js
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat@0/dist/chat.bundle.es.js';
+// 1. CHANGED: Importing the standardized production window bundle instead of the strict ES module layout
+import 'https://cdn.jsdelivr.net/npm/@n8n/chat@0/dist/chat.bundle.js';
 // Import your centralized auth and db configurations
 import { auth, db } from './auth.js';
 
 /**
  * 1. DEFINE THE CHATBOT LAUNCHER FIRST
- * Keeps the browser from throwing an uncaught ReferenceError.
  */
 function initN8nChatbot() {
   console.log("Initializing n8n chat widget component...");
   
-  if (typeof createChat === "function") {
-    createChat({
+  // Checking the global window component namespace deployed by the standard bundle script
+  if (window.N8NChat) {
+    window.N8NChat({
       webhookUrl: 'https://wisely3.app.n8n.cloud/webhook/cc234ca7-19e3-44d3-bc88-b1fe5889664/chat',
       target: '#n8n-chat',
       mode: 'window', 
       showWelcomeScreen: true,
-      
-      // ==========================================
-      // ADD THIS LINE RIGHT HERE TO FIXED THE JSON PROBLEM:
-      // ==========================================
-      stream: true, 
-      
       title: 'AI Assistant',
       subtitle: 'Hello My Name Is Wisely AI! How may I help you today?',
       initialMessages: ['Hello My Name Is Wisely AI! How may I help you today?'],
     });
   } else {
-    console.error("CRITICAL: n8n createChat bundle did not load properly from the CDN.");
+    console.error("CRITICAL: window.N8NChat engine package did not mount properly.");
   }
 }
 
@@ -79,7 +74,6 @@ onAuthStateChanged(auth, async (user) => {
 
 /**
  * 3. STRIPE CHECKOUT FLOW HANDLER
- * Writes parameters to users customers subcollection watched by Firebase extension
  */
 function setupCheckoutFlow(uid) {
   const subscribeBtn = document.getElementById('subscribeBtn');
@@ -101,7 +95,7 @@ function setupCheckoutFlow(uid) {
       
       const docRef = await addDoc(checkoutRef, {
         price: 'price_1TlRlhHKPBm07W1PWsfVX8wN', 
-        success_url: window.location.origin + "/index.html",
+        success_url: window.location.origin + window.location.pathname.replace('subscription.html', 'index.html'),
         cancel_url: window.location.href,
       });
 
@@ -128,46 +122,3 @@ function setupCheckoutFlow(uid) {
     }
   });
 }
-
-onAuthStateChanged(auth, async (user) => {
-  const subscribeBtn = document.getElementById('subscribeBtn');
-  const freeBtn = document.getElementById('freeBtn');
-
-  if (user) {
-    try {
-      // Force token refresh to fetch custom claims populated via Stripe webhook
-      const tokenResult = await user.getIdTokenResult(true);
-      const userRole = tokenResult.claims.stripeRole;
-
-      console.log("Current detected Stripe Role claim:", userRole);
-
-      if (userRole === 'premium') {
-        // User has successfully checked out -> Enable AI Chatbot on whatever page they are on!
-        initN8nChatbot();
-        
-        // SAFE CHECKS: Only update these elements if they exist on the current page
-        if (subscribeBtn) {
-          subscribeBtn.innerText = "Current Plan Active";
-          subscribeBtn.style.opacity = "0.5";
-          subscribeBtn.disabled = true;
-        }
-        if (freeBtn) {
-          freeBtn.innerText = "Free Tier Locked";
-          freeBtn.disabled = true;
-        }
-      } else {
-        console.log("User tier: Free. Initializing Stripe session handler.");
-        setupCheckoutFlow(user.uid);
-      }
-    } catch (error) {
-      console.error("Error retrieving custom security claims token:", error);
-    }
-  } else {
-    // Unauthenticated fallback -> Only attach event if the button is present
-    if (subscribeBtn) {
-      subscribeBtn.addEventListener('click', () => {
-        window.location.href = "LogIn.html";
-      });
-    }
-  }
-});
