@@ -2,7 +2,6 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat@0/dist/chat.bundle.es.js';
-// Import your centralized auth and db configurations
 import { auth, db } from './auth.js';
 
 /**
@@ -20,11 +19,9 @@ function initN8nChatbot(userUid) {
       showWelcomeScreen: true,
       stream: false, 
       
-      // FIX HERE: Enclosing within the metadata property preserves it inside the widget payload array!
+      // UPDATED: userId is now directly under metadata for proper n8n pathing
       metadata: {
-        payload: {
-          userId: userUid
-        }
+        userId: userUid
       },
       
       i18n: {
