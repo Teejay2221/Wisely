@@ -20,9 +20,8 @@ function initN8nChatbot(userUid) {
       showWelcomeScreen: true,
       stream: false, 
       
-      // FIX HERE: Enclosing within the metadata property preserves it inside the widget payload array!
      metadata: {
-    userId: userUid
+    userId: userUid // Remove the 'payload' wrapper
 }
       },
       
