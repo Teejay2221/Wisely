@@ -19,7 +19,7 @@ function initN8nChatbot(userUid) {
       showWelcomeScreen: true,
       stream: false, 
       
-      // UPDATED: userId is now directly under metadata for proper n8n pathing
+      // FLATTENED: userId is now directly under metadata
       metadata: {
         userId: userUid
       },
