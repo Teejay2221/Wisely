@@ -6,21 +6,26 @@ import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat@0/dist/chat.b
 import { auth, db } from './auth.js';
 
 /**
- * 1. DEFINE THE CHATBOT LAUNCHER FIRST
- * Properly named and configured to safely intercept n8n v3.1 streams.
+ * 1. DEFINE THE CHATBOT LAUNCHER
+ * Dynamically accepts the user's Firebase UID to bridge the database context.
  */
-function initN8nChatbot() {
-  console.log("Initializing n8n chat widget component...");
+function initN8nChatbot(userUid) {
+  console.log("Initializing n8n chat widget component with context...");
   
   if (typeof createChat === "function") {
     createChat({
-      webhookUrl: 'https://wisely3.app.n8n.cloud/webhook/cc234ca7-19e3-44d3-bc88-b81fe5889664/chat',
+      webhookUrl: 'https://wisely4.app.n8n.cloud/webhook/e63e6897-32ec-4862-8433-59c7abb22856/chat',
       target: '#n8n-chat',
       mode: 'window', 
       showWelcomeScreen: true,
+      stream: false, 
       
-      // Forces the widget to compile streaming data packets correctly
-      stream: true, 
+      // FIX HERE: Enclosing within the metadata property preserves it inside the widget payload array!
+      metadata: {
+        payload: {
+          userId: userUid
+        }
+      },
       
       i18n: {
         en: {
@@ -41,7 +46,7 @@ function initN8nChatbot() {
 }
 
 /**
- * 2. AUTHENTICATION STATE OBSERVER WITH FORCED TOKEN REFRESH
+ * 2. AUTHENTICATION STATE OBSERVER WITH SAFE MULTI-PAGE CHECKS
  */
 onAuthStateChanged(auth, async (user) => {
   const subscribeBtn = document.getElementById('subscribeBtn');
@@ -56,9 +61,10 @@ onAuthStateChanged(auth, async (user) => {
       console.log("Current detected Stripe Role claim:", userRole);
 
       if (userRole === 'premium') {
-        // User has successfully checked out -> Enable AI Chatbot safely!
-        initN8nChatbot();
+        // ALWAYS launch the chatbot on any page if they are a premium user!
+        initN8nChatbot(user.uid);
         
+        // Safe check: Only update buttons if they actually exist on the current HTML page
         if (subscribeBtn) {
           subscribeBtn.innerText = "Current Plan Active";
           subscribeBtn.style.opacity = "0.5";
@@ -69,14 +75,17 @@ onAuthStateChanged(auth, async (user) => {
           freeBtn.disabled = true;
         }
       } else {
-        console.log("User tier: Free. Initializing Stripe session handler.");
-        setupCheckoutFlow(user.uid);
+        console.log("User tier: Free.");
+        // Only run checkout setup if we are on the page containing the checkout button
+        if (subscribeBtn) {
+          setupCheckoutFlow(user.uid);
+        }
       }
     } catch (error) {
       console.error("Error retrieving custom security claims token:", error);
     }
   } else {
-    // Unauthenticated fallback -> Send them to registration/login
+    // Unauthenticated fallback -> If they click subscribe while logged out, send to login
     if (subscribeBtn) {
       subscribeBtn.addEventListener('click', () => {
         window.location.href = "LogIn.html";
